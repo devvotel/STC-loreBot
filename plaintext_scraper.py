@@ -18,9 +18,11 @@ with open("page_titles.json","r", encoding="utf-8") as jsonFile:
 
 for article in pages:
     curr = lexicanum.page(article)
-    if ((os.path.isfile(articles_path + curr.pageid +".txt") == False) and curr.content.strip() != ""):
+    if ((os.path.isfile(articles_path + str(curr.pageid) +".txt") == False) and curr.content.strip() != ""):
         print("Saving", curr.pageid)
         with open(articles_path+curr.pageid + ".txt", "w", encoding='utf-8') as curr_file:
             curr_file.write(curr.content)
+        with open(home_dir+'/processed_article_ids.txt', "a", encoding='utf-8') as processed_files:
+            processed_files.write(curr.pageid + ",\n")
     else:
         print (curr.pageid, "was already saved or the article is empty.")
