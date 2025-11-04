@@ -24,5 +24,6 @@ for article in pages:
             curr_file.write(curr.content)
         with open(home_dir+'/processed_article_ids.txt', "a", encoding='utf-8') as processed_files:
             processed_files.write(curr.pageid + ",\n")
+            
     else:
         print (curr.pageid, "was already saved or the article is empty.")
